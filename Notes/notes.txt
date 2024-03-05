@@ -1,0 +1,9 @@
+??? (Arrival time?) SRTF, start with P1, increase to P2 (compare for shortest and run that), then increase to P3 and compare, 
+
+
+Submit the following files (inside of a .zip file)
+SchedulerFCFS.java
+SchedulerSJF.java
+SchedulerSRTF.java
+SchedulerPriority.java
+SchedulerRR.java
