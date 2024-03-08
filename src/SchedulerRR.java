@@ -2,8 +2,6 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 
-// This one is complete, I think
-
 
 public class SchedulerRR extends SchedulerBase implements Scheduler {
     private final Platform platform;
@@ -32,6 +30,7 @@ public class SchedulerRR extends SchedulerBase implements Scheduler {
         if (cpu.isExecutionComplete()) { // Process has finished executing
             platform.log(String.format("Process %s execution complete", cpu.getName()));
 
+            this.contextSwitches += 1;
             return getNextProcess(cpu);
         }
 
@@ -45,6 +44,7 @@ public class SchedulerRR extends SchedulerBase implements Scheduler {
         if (cpu.getElapsedBurst() % timeQuantum == 0) {
             platform.log(String.format("Time quantum complete for process %s", cpu.getName()));
             
+            this.contextSwitches += 1;
             readyQueue.add(cpu); // Process isn't complete, add to the end of the queue
             return getNextProcess(cpu);
         }
@@ -60,7 +60,7 @@ public class SchedulerRR extends SchedulerBase implements Scheduler {
         if (!readyQueue.isEmpty()) {
             Process nextProcess = readyQueue.poll(); // Get and remove the next process from the ready queue
             logScheduledProcess(nextProcess);
-            this.contextSwitches += 1; // Increment contextSwitches
+            this.contextSwitches += 1;
             return nextProcess;
         } else {
             return null; // No process to execute

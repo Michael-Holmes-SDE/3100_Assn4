@@ -2,13 +2,10 @@ import java.util.PriorityQueue;
 import java.util.Comparator;
 
 
-// This one is complete (I think)
-
 
 public class SchedulerSJF extends SchedulerBase implements Scheduler {
-
     final Platform platform;
-    PriorityQueue<Process> priorityQueue;
+    private PriorityQueue<Process> priorityQueue;
 
 
     public SchedulerSJF(Platform platform) {
@@ -23,7 +20,7 @@ public class SchedulerSJF extends SchedulerBase implements Scheduler {
     }
 
 
-    @Override // JUST FCFS, UPDATE
+    @Override
     public Process update(Process cpu) {
         if (cpu == null) {
             return getNextProcess(cpu); // Start the first process
@@ -33,12 +30,14 @@ public class SchedulerSJF extends SchedulerBase implements Scheduler {
             platform.log(String.format("Process %s burst complete", cpu.getName()));
             platform.log(String.format("Process %s execution complete", cpu.getName()));
 
+            this.contextSwitches += 1;
             return getNextProcess(cpu);
         }
 
         if (cpu.isBurstComplete()) {
             platform.log(String.format("Process %s burst complete", cpu.getName()));
             
+            this.contextSwitches += 1;
             priorityQueue.add(cpu); // Process isn't complete, add back to the priority queue
             return getNextProcess(cpu);
         }
@@ -54,7 +53,7 @@ public class SchedulerSJF extends SchedulerBase implements Scheduler {
         if (!priorityQueue.isEmpty()) {
             Process nextProcess = priorityQueue.poll(); // Get and remove the next process from the priority queue
             logScheduledProcess(nextProcess);
-            this.contextSwitches += 1; // Increment contextSwitches
+            this.contextSwitches += 1;
             return nextProcess;
         } else {
             return null; // No process to execute

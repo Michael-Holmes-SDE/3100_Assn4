@@ -2,8 +2,6 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 
-// This one is NOT COMPLETE, goes forever on P1 I think
-
 
 public class SchedulerSRTF extends SchedulerBase implements Scheduler {
     final Platform platform;
@@ -26,7 +24,9 @@ public class SchedulerSRTF extends SchedulerBase implements Scheduler {
             if (cpu.isExecutionComplete()) {
                 platform.log(String.format("Process %s burst complete", cpu.getName()));
                 platform.log(String.format("Process %s execution complete", cpu.getName()));
+
                 processQueue.remove(cpu);
+                this.contextSwitches += 1;
                 return getNextProcess(null); // Don't use cpu, since it's completed
             }
 
@@ -62,10 +62,11 @@ public class SchedulerSRTF extends SchedulerBase implements Scheduler {
 
         if (shortestProcess != null & shortestProcess != currentProcess) {
             if (currentProcess != null) {
+                this.contextSwitches += 1;
                 platform.log(String.format("Preemptively removed: %s", currentProcess.getName()));
             }
 
-            contextSwitches += 1;
+            this.contextSwitches += 1;
             logScheduledProcess(shortestProcess);
         }
 
