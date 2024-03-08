@@ -5,3 +5,6 @@
 *.properties
 
 *.probe
+
+*.class
+
