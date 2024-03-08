@@ -1,4 +1,4 @@
-public class SchedulerRR implements Scheduler {
+public class SchedulerRR extends SchedulerBase implements Scheduler {
     // Round-Robin
     final Platform platform;
     final int timeQuantum;

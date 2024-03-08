@@ -1,4 +1,4 @@
-public class SchedulerSJF implements Scheduler {
+public class SchedulerSJF extends SchedulerBase implements Scheduler {
     // Shortest Job First
     // Use PriorityQueue class (built-in)
     final Platform platform;

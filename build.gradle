@@ -21,7 +21,7 @@ sourceSets {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'Assn5'  // Configures the JAR file to recognize 'Assn5' as the main class for execution
+        attributes 'Main-Class': 'Assign5'  // Configures the JAR file to recognize 'Assign5' as the main class for execution
     }
 }
 
@@ -33,4 +33,4 @@ run {
     }
 }
 
-mainClassName = 'Assn5'   // Sets 'Assn5' as the main class to run your application
+mainClassName = 'Assign5'   // Sets 'Assign5' as the main class to run your application

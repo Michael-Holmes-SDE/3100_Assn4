@@ -1,6 +1,7 @@
 import java.util.*;
 import java.lang.*;
 
+@SuppressWarnings("unused") // Shouldn't change functionality
 class Main{
     public static void main(String[]args){
         Student student1 = new Student("Jake","Lauritsen",1);

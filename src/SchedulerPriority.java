@@ -1,7 +1,7 @@
 //import PQ.PQ;
 
 
-public class SchedulerPriority implements Scheduler {
+public class SchedulerPriority extends SchedulerBase implements Scheduler {
     // Use PriorityQueue class (built-in) named PQ
     final Platform platform;
 

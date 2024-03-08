@@ -1,4 +1,6 @@
-public class SchedulerSRTF implements Scheduler {
+// Start with P1, increase to P2 (compare for shortest and run that), then increase to P3 and compare, 
+
+public class SchedulerSRTF extends SchedulerBase implements Scheduler {
     // Shortest Remaining Time First
     final Platform platform;
 
